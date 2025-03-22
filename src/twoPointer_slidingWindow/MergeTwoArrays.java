@@ -1,11 +1,10 @@
-package twoPointer_SlidingWindow;
-// 3-2. 공통 원소 구하기
+package twoPointer_slidingWindow;
 
+//3-1. 두 배열 합치기
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class FindCommonElements {
+public class MergeTwoArrays {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -23,20 +22,22 @@ public class FindCommonElements {
 
     public static void solution(int n, int m, int[] n_array, int[] m_array) {
         ArrayList<Integer> answer = new ArrayList<>();
-        Arrays.sort(n_array);
-        Arrays.sort(m_array);
         int ptr_n = 0;
         int ptr_m = 0;
         while (ptr_n < n && ptr_m < m) {
-            if (n_array[ptr_n] == m_array[ptr_m]) {
-                answer.add(n_array[ptr_n++]);
-                ptr_m++;
-            } else if (n_array[ptr_n] > m_array[ptr_m]) {
-                ptr_m++;
+            if (n_array[ptr_n] > m_array[ptr_m]) {
+                answer.add(m_array[ptr_m++]);
             } else {
-                ptr_n++;
+                answer.add(n_array[ptr_n++]);
             }
         }
+        while (ptr_n < n) {
+            answer.add(n_array[ptr_n++]);
+        }
+        while (ptr_m < m) {
+            answer.add(m_array[ptr_m++]);
+        }
+
         for (int num : answer) {
             System.out.print(num + " ");
         }

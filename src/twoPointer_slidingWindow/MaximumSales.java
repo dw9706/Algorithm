@@ -1,4 +1,4 @@
-package twoPointer_SlidingWindow;
+package twoPointer_slidingWindow;
 // 3-3. 최대 매출
 
 import java.util.Scanner;

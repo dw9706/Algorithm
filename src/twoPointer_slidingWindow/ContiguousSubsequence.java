@@ -1,4 +1,4 @@
-package twoPointer_SlidingWindow;
+package twoPointer_slidingWindow;
 // 3-4 연속 부분수열
 
 import java.util.Scanner;
