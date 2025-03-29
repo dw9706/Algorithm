@@ -3,7 +3,8 @@ package stack_queue;
 
 import java.util.Scanner;
 import java.util.HashMap;
-import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 public class CoursePlanning {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -14,17 +15,16 @@ public class CoursePlanning {
 
     public static String solution(String str1, String str2) {
         HashMap<Character, Integer> essentialMap = new HashMap<>();
-        Stack<Character> essentialStack = new Stack<>();
-        String reverse = new StringBuilder(str1).reverse().toString();
-        for (Character c : reverse.toCharArray()) {
+        Queue<Character> essentialQ = new LinkedList<>();
+        for (Character c : str1.toCharArray()) {
+            essentialQ.offer(c);
             essentialMap.put(c, 1);
-            essentialStack.push(c);
         }
 
         for (Character c : str2.toCharArray()) {
-            if (essentialMap.containsKey(c) && essentialStack.pop() != c) return "NO";
+            if (essentialMap.containsKey(c) && essentialQ.poll() != c) return "NO";
         }
-        if(!essentialStack.isEmpty()) return "NO";
+        if(!essentialQ.isEmpty()) return "NO";
 
         return "YES";
 
