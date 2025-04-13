@@ -9,7 +9,7 @@ public class FindCombinations {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-        combi = new int[m+1];
+        combi = new int[m];
         DFS(n, m, 1, 0);
     }
 
