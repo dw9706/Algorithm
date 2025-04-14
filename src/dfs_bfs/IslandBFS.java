@@ -1,5 +1,5 @@
 package dfs_bfs;
-// 8-13. 섬나라 아일랜드 (DFS)
+// 8-14. 섬나라 아일랜드 (BFS)
 
 import java.util.*;
 
