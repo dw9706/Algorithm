@@ -1,5 +1,5 @@
 package dfs_bfs;
-// 8-14. 피자배달거리
+// 8-15. 피자배달거리
 
 import java.util.*;
 
@@ -8,8 +8,6 @@ public class PizzaDeliveryDistance {
     private static ArrayList<Pos3> pz = new ArrayList<>();
     private static ArrayList<Pos3> hs = new ArrayList<>();
     private static Pos3[] combi;
-    private static int[] dx = {-1, 0, 1, 0};
-    private static int[] dy = {0, 1, 0, -1};
     private static int answer = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
