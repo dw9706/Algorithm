@@ -18,17 +18,20 @@ public class WonderlandKruskalMST {
             int cost = sc.nextInt();
             edges.add(new Edge1(v1, v2, cost));
         }
-        System.out.println(solution());
+        System.out.println(solution(v));
     }
 
-    public static int solution() {
+    public static int solution(int v) {
         Collections.sort(edges);
         int answer = 0;
+        int n = 0;
         for (Edge1 edge : edges) {
+            if(n == v-1) break;
             int fv1 = Find(edge.v1);
             int fv2 = Find(edge.v2);
             if (fv1 != fv2) {
                 Union(edge.v1, edge.v2);
+                n++;
                 answer += edge.cost;
             }
         }
@@ -46,8 +49,7 @@ public class WonderlandKruskalMST {
         else return unf[v] = Find(unf[v]);
     }
 
-
-
+    
 }
 
 class Edge1 implements Comparable<Edge1> {
