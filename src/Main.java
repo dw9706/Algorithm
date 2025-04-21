@@ -1,26 +1,14 @@
-// 1-12. 암호
+// 1-2. 대소문자 변환
 
-import java.io.*;
+import java.util.*;
 public class Main {
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        int n = Integer.parseInt(br.readLine());
-        String str = br.readLine();
-        for (int i = 0; i < n; i++) {
-            String tmpStr = str.substring(0, 7);
-            str = str.substring(7);
-
-            StringBuilder sb = new StringBuilder();
-            for (char c : tmpStr.toCharArray()) {
-                if(c=='#') sb.append("1");
-                else sb.append("0");
-            }
-            bw.write((char) Integer.parseInt(sb.toString(), 2));
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        char[] arr = sc.nextLine().toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+             if(Character.isUpperCase(arr[i])) arr[i] = Character.toLowerCase(arr[i]);
+             else arr[i] = Character.toUpperCase(arr[i]);
         }
-        bw.flush();
-        br.close();
-        bw.close();
+        System.out.println(String.valueOf(arr));
     }
 }
