@@ -1,4 +1,5 @@
-// 1-4. 단어 뒤집기
+// 1-12. 암호
+
 import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException{
@@ -6,24 +7,20 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
-
+        String str = br.readLine();
         for (int i = 0; i < n; i++) {
-            StringBuilder sb = new StringBuilder();
-            char[] arr = br.readLine().toCharArray();
-            int lt = 0;
-            int rt = arr.length - 1;
-            while (lt < rt) {
-                char tmp = arr[lt];
-                arr[lt] = arr[rt];
-                arr[rt] = tmp;
-                lt++; rt--;
-            }
-            bw.write(String.valueOf(arr));
-            bw.write(System.lineSeparator());
-        }
+            String tmpStr = str.substring(0, 7);
+            str = str.substring(7);
 
+            StringBuilder sb = new StringBuilder();
+            for (char c : tmpStr.toCharArray()) {
+                if(c=='#') sb.append("1");
+                else sb.append("0");
+            }
+            bw.write((char) Integer.parseInt(sb.toString(), 2));
+        }
         bw.flush();
         br.close();
-        br.close();
+        bw.close();
     }
 }
