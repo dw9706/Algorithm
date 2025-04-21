@@ -1,31 +1,31 @@
-//5-4. 후위식 연산
+// 3-3. 최대 매출
 
+import java.io.*;
 import java.util.*;
-
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String postfix = sc.nextLine();
-        Stack<Integer> stack = new Stack<>();
-        for (char c : postfix.toCharArray()) {
-            if (Character.isDigit(c)) stack.push(Character.getNumericValue(c));
-            else {
-                int num2 = stack.pop();
-                int num1 = stack.pop();
-                int result = 0;
-                if (c == '+') {
-                    result = num1 + num2;
-                } else if (c == '-') {
-                    result = num1 - num2;
-                } else if (c == '/') {
-                    result = num1 / num2;
-                } else if (c == '*') {
-                    result = num1 * num2;
-                }
-                stack.push(result);
-            }
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+        int[] nums = new int[n];
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            nums[i] = Integer.parseInt(st.nextToken());
         }
-        System.out.println(stack.pop());
+
+        int sum = 0;
+        for (int i = 0; i < k; i++) {
+            sum += nums[i];
+        }
+        int answer = sum;
+        for (int i = k; i < n; i++) {
+            sum = sum + nums[i] - nums[i - k];
+            answer = Math.max(answer, sum);
+        }
+        System.out.println(answer);
     }
 }
 
