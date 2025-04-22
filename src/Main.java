@@ -1,4 +1,4 @@
-// 3-2. 공통원소 구하기
+// 10-4. 가장 높은 탑 쌓기
 
 
 import java.io.*;
@@ -6,39 +6,47 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
         int n = Integer.parseInt(br.readLine());
-        Integer[] A = new Integer[n];
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        ArrayList<Brick> bricks = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            A[i] = Integer.parseInt(st.nextToken());
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int s = Integer.parseInt(st.nextToken());
+            int h = Integer.parseInt(st.nextToken());
+            int w = Integer.parseInt(st.nextToken());
+            bricks.add(new Brick(s, h, w));
         }
-        int m = Integer.parseInt(br.readLine());
-        Integer[] B = new Integer[m];
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < m; i++) {
-            B[i] = Integer.parseInt(st.nextToken());
-        }
-
-        Arrays.sort(A);
-        Arrays.sort(B);
-
-        int Aptr = 0; int Bptr = 0;
-
-        while (Aptr < n && Bptr < m) {
-            if(A[Aptr].equals(B[Bptr])){
-                bw.write(A[Aptr]+" ");
-                Aptr++;
-                Bptr++;
+        Collections.sort(bricks);
+        int[] dy = new int[n];
+        dy[0] = bricks.get(0).h;
+        int answer = 0;
+        for (int i = 1; i < n; i++) {
+            int max = 0;
+            for (int j = i - 1; j >= 0; j--) {
+                if(bricks.get(i).w < bricks.get(j).w) max = Math.max(max, dy[j]);
             }
-            else if(A[Aptr] < B[Bptr]) Aptr++;
-            else if(A[Aptr] > B[Bptr]) Bptr++;
+            dy[i] = max + bricks.get(i).h;
+            answer = Math.max(answer, dy[i]);
         }
+        System.out.println(answer);
 
-        bw.flush();
         br.close();
-        bw.close();
+    }
+}
+
+class Brick implements Comparable<Brick> {
+    public int s;
+    public int h;
+    public int w;
+
+    public Brick(int s, int h, int w) {
+        this.s = s;
+        this.h = h;
+        this.w = w;
+    }
+
+    @Override
+    public int compareTo(Brick o) {
+        return o.s - this.s;
     }
 }
 
