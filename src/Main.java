@@ -1,25 +1,22 @@
-// 1-3. 문장 속 단어
+// 1-6. 중복문자제거
 
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        HashSet<Character> set = new HashSet<>();
         Scanner sc = new Scanner(System.in);
         char[] arr = sc.nextLine().toCharArray();
+        StringBuilder sb = new StringBuilder();
 
-        int lt = 0;
-        int rt = arr.length - 1;
-        while (lt < rt) {
-            if (Character.isAlphabetic(arr[lt]) && Character.isAlphabetic(arr[rt])) {
-                char tmp = arr[lt];
-                arr[lt] = arr[rt];
-                arr[rt] = tmp;
-                rt--; lt++;
-            } else if(!Character.isAlphabetic(arr[rt])) rt--;
-            else if(!Character.isAlphabetic(arr[lt])) lt++;
+        for (char c : arr) {
+            if(set.contains(c)) continue;
+            set.add(c);
+            sb.append(c);
         }
-        System.out.println(String.valueOf(arr));
+        System.out.println(sb.toString());
+
     }
 
 }
