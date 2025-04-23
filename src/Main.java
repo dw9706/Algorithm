@@ -1,4 +1,4 @@
-//6-6. 장난 꾸러기
+//2-1. 큰 수 출력하기
 
 
 import java.io.*;
@@ -6,21 +6,24 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
         int n = Integer.parseInt(br.readLine());
+        int[] nums = new int[n];
         StringTokenizer st = new StringTokenizer(br.readLine());
-
-        Integer[] arr = new Integer[n];
-
         for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            nums[i] = Integer.parseInt(st.nextToken());
         }
 
-        Integer[] sorted = arr.clone();
-        Arrays.sort(sorted);
+        bw.write(nums[0] + " ");
 
-        for (int i = 0; i < n; i++) {
-            if(!arr[i].equals(sorted[i])) System.out.print((i + 1) + " ");
+        for (int i = 1; i < n; i++) {
+            if(nums[i] > nums[i-1]) bw.write(nums[i] + " ");
         }
+        bw.flush();
+        br.close();
+        bw.close();
+
     }
 }
 
