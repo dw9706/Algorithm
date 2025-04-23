@@ -1,28 +1,28 @@
-//1-10. 가장 짧은 문자거리
+//6-2. 버를 정렬
 
 import java.util.*;
+import java.io.*;
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        char[] arr = sc.next().toCharArray();
-        char alpha = sc.next().charAt(0);
-
-        int[] check = new int[arr.length];
-
-        int pos = 1000;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == alpha) pos = 0;
-            else check[i] = ++pos;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[] nums = new int[n];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            nums[i] = Integer.parseInt(st.nextToken());
         }
 
-        pos = 1000;
-        for (int i = arr.length-1; i >= 0; i--) {
-            if (arr[i] == alpha) pos = 0;
-            else check[i] = Math.min(check[i], ++pos);
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < n - i; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    int tmp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = tmp;
+                }
+            }
         }
-
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(check[i] + " ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(nums[i] + " ");
         }
 
     }
