@@ -1,63 +1,28 @@
-//5-8. 응급실
+//2-3. 가위 바위 보
 
 import java.util.*;
 import java.io.*;
 
 public class Main {
-    private static int[] dx = {-1, 0, 1, 0};
-    private static int[] dy = {0, 1, 0, -1};
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        int[][] board = new int[m][n];
+        int n = Integer.parseInt(br.readLine());
+        int[] a = new int[n];
+        int[] b = new int[n];
 
-        Queue<Pos> queue = new LinkedList<>();
-
-        for (int i = 0; i < m; i++) {
-            st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < n; j++) {
-                board[i][j] = Integer.parseInt(st.nextToken());
-                if(board[i][j] == 1) queue.offer(new Pos(i, j));
-            }
+        StringTokenizer st1 = new StringTokenizer(br.readLine());
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(st1.nextToken());
+            b[i] = Integer.parseInt(st2.nextToken());
         }
-        while (!queue.isEmpty()) {
-            Pos p = queue.poll();
-            for (int i = 0; i < 4; i++) {
-                int nx = p.x + dx[i];
-                int ny = p.y + dy[i];
-                if (0 <= nx && nx < m && 0 <= ny && ny < n && board[nx][ny] == 0) {
-                    queue.offer(new Pos(nx, ny));
-                    board[nx][ny] = board[p.x][p.y] + 1;
-                }
-            }
+        for (int i = 0; i < n; i++) {
+            if(a[i] == b[i]) System.out.println("D");
+            else if (a[i] == 3 && b[i] == 1) System.out.println("B");
+            else if (b[i] == 3 && a[i] == 1) System.out.println("A");
+            else System.out.println(a[i] > b[i] ? "A" : "B");
         }
-        int answer = checkAnswer(n, m, board);
-        System.out.println(answer);
-    }
-    public static int checkAnswer(int n, int m, int[][] board){
-        int answer = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if(board[i][j] == 0) {
-                    return -1;
-                }
-                answer = Math.max(answer, board[i][j]);
-            }
-        }
-        return answer -1;
-    };
-
-}
-
-
-class Pos {
-    public int x;
-    public int y;
-
-    Pos(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
 }
+
+
