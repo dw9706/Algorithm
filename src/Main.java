@@ -1,26 +1,24 @@
-//1-11. 문자열 압축"
+//2-04. 피보나치 수열
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine()+" ";
-        char pre = str.charAt(0);
-        int cnt = 1;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 1; i < str.length(); i++) {
-            char now = str.charAt(i);
-            if(pre == now) cnt++;
-            else{
-                sb.append(pre);
-                sb.append(cnt);
-                cnt = 1;
-            }
-            pre = now;
+        int n = sc.nextInt();
+        int[] pibo = new int[n];
+
+        pibo[0] = 1;
+        pibo[1] = 1;
+        for (int i = 2; i < n; i++) {
+            pibo[i] = pibo[i - 2] + pibo[i - 1];
         }
-        String answer = sb.toString().replaceAll("1","");
-        System.out.println(answer);
+        StringBuilder sb = new StringBuilder();
+        for(int num : pibo){
+            sb.append(num + " ");
+        }
+
+        System.out.println(sb);
     }
 }
 
