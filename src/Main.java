@@ -1,24 +1,26 @@
-//2-04. 피보나치 수열
+//5-5. 쇠막대기
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] pibo = new int[n];
-
-        pibo[0] = 1;
-        pibo[1] = 1;
-        for (int i = 2; i < n; i++) {
-            pibo[i] = pibo[i - 2] + pibo[i - 1];
+        String sticks = sc.nextLine();
+        Stack<Character> stack = new Stack<>();
+        char pre = ' ';
+        int answer = 0;
+        for(char c : sticks.toCharArray()){
+            if(c == '(') stack.push(c);
+            else{
+                stack.pop();
+                if(pre == ')') answer++;
+                else{
+                    answer += stack.size();
+                }
+            }
+            pre = c;
         }
-        StringBuilder sb = new StringBuilder();
-        for(int num : pibo){
-            sb.append(num + " ");
-        }
-
-        System.out.println(sb);
+        System.out.println(answer);
     }
 }
 
