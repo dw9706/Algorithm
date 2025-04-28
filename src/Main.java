@@ -1,28 +1,26 @@
-//2-2. 보이는 학생
+//1-11. 문자열 압축"
 
 import java.util.*;
-import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        int[] nums = new int[n];
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < n; i++) {
-            nums[i] = Integer.parseInt(st.nextToken());
-        }
-        int answer = 0;
-        int max = Integer.MIN_VALUE;
-        for (int i = 0; i < n; i++) {
-            if (max < nums[i]) {
-                answer++;
-                max = nums[i];
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine()+" ";
+        char pre = str.charAt(0);
+        int cnt = 1;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i < str.length(); i++) {
+            char now = str.charAt(i);
+            if(pre == now) cnt++;
+            else{
+                sb.append(pre);
+                sb.append(cnt);
+                cnt = 1;
             }
+            pre = now;
         }
-
+        String answer = sb.toString().replaceAll("1","");
         System.out.println(answer);
-
     }
 }
 
